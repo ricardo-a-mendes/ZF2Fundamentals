@@ -3,6 +3,16 @@
 return array(
     'router' => array(
         'routes' => array(
+            'home' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/',
+                    'defaults' => array(
+                        'controller' => 'market-index-controller',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
             'market' => array(
                 'type' => 'Literal',
                 'options' => array(
@@ -13,16 +23,51 @@ return array(
                     ),
                 ),
                 'may_terminate' => true,
+                //Encadeando as rotas (filhas)
                 'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
+                    'view' => array(
+                        'type' => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
+                            'route' => '/view',
                             'defaults' => array(
+                                'controller' => 'market-view-controller',
+                                'action' => 'index',
+                            ),
+                        ),
+                        'may_terminate' => true,
+                        //Rita filha de uma rota filha
+                        'child_routes' => array(
+                            'main' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/main[/:category]',
+                                    'defaults' => array(
+                                        'action' => 'index',
+                                    ),
+                                ),
+                            ),
+                            'item' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/item[/:itemId]',
+                                    'defaults' => array(
+                                        'controller' => 'market-view-controller',
+                                        'action' => 'item',
+                                    ),
+                                    'constraints' => array(
+                                        'itemId' => '[0-9]*',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                    'post' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/post',
+                            'defaults' => array(
+                                'controller' => 'market-post-controller',
+                                'action' => 'index',
                             ),
                         ),
                     ),
