@@ -1,1 +1,2 @@
-<?php echo "<h1>{$this->category}</h1>";
+<?php /* @var $this \Zend\View\Renderer\PhpRenderer */  ?>
+<?php echo "<h1>{$this->escapeHtml($this->category)}</h1>";

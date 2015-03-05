@@ -112,6 +112,12 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
+    'view_helpers' => array(
+        //Registrando o Helper "LeftLinkss"
+        'invokables' => array(
+            'leftLinks' => 'Application\Helper\LeftLinks'
+        ),
+    ),
     // Placeholder for console routes
     'console' => array(
         'router' => array(

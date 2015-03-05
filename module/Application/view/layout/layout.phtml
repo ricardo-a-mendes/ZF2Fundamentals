@@ -1,3 +1,4 @@
+<?php /* @var $this \Zend\View\Renderer\PhpRenderer */  ?>
 <?php echo $this->doctype(); ?>
 
 <html lang="en">
@@ -45,10 +46,11 @@
         </nav>
         <div class="container">
             <div class="col-lg-2">
-                <?php echo $this->htmllist($this->categories); ?>
+                <?php echo $this->leftLinks($this->categories, $this->basePath('/market/view/main')); ?>
             </div>
             <div class="col-lg-8">
-                <?php echo $this->content; ?>
+                <?php //echo $this->content; ?>
+                <?php echo $this->vars('content'); ?>
             </div>
         </div> <!-- /container -->
             <hr>

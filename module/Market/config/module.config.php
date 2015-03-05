@@ -35,7 +35,7 @@ return array(
                             ),
                         ),
                         'may_terminate' => true,
-                        //Rita filha de uma rota filha
+                        //Rota filha de uma rota filha
                         'child_routes' => array(
                             'main' => array(
                                 'type' => 'Segment',

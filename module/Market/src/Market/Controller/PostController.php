@@ -23,6 +23,11 @@ class PostController extends AbstractActionController
         */
 
         //Desta forma utilizamos uma Factory, sem DI
-        return new ViewModel(array('categories' => $this->categories));
+        //return new ViewModel(array('categories' => $this->categories));
+
+        $vm = new ViewModel(array('categories' => $this->categories));
+        $vm->setTemplate('market/post/invalid.phtml');
+
+        return $vm;
     }
 }
