@@ -8,10 +8,16 @@ use Zend\View\Model\ViewModel;
 class PostController extends AbstractActionController
 {
     public $categories;
+    private $postForm;
 
     function setCategories($categories)
     {
         $this->categories = $categories;
+    }
+
+    public function setPostForm(\Market\Form\PostForm $postForm)
+    {
+        $this->postForm = $postForm;
     }
 
     public function indexAction()
@@ -25,9 +31,30 @@ class PostController extends AbstractActionController
         //Desta forma utilizamos uma Factory, sem DI
         //return new ViewModel(array('categories' => $this->categories));
 
-        $vm = new ViewModel(array('categories' => $this->categories));
-        $vm->setTemplate('market/post/invalid.phtml');
+        $data = $this->params()->fromPost();
+        $vm = new ViewModel(array('postForm' => $this->postForm, 'data' => $data));
+        $vm->setTemplate('market/post/index.phtml');
+
+        if ($this->getRequest()->isPost())
+        {
+            $this->postForm->setData($data);
+
+            if ($this->postForm->isValid())
+            {
+                $this->flashMessenger()->addMessage('Post recebido com sucesso!');
+                $this->redirect()->toRoute('home');
+            }
+            else
+            {
+                $invalidView = new ViewModel();
+                $invalidView->setTemplate('market/post/invalid.phtml');
+                $invalidView->addChild($vm, 'main');
+
+                return $invalidView;
+            }
+        }
 
         return $vm;
     }
+
 }
