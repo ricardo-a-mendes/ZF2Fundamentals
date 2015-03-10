@@ -25,19 +25,131 @@ class PostFilter extends InputFilter
         $category->getValidatorChain()
                 ->attachByName('InArray', array('haystack' => $this->categories));
 
+        //---------------------------------------------------------------------------------------------------
         $title = new Input('title');
         $title->getFilterChain()
                 ->attachByName('StringTrim')
                 ->attachByName('StripTags');
 
-        $titleRegex = new \Zend\Validator\Regex(array('pattern' => '/^[a-zA-Z0-9 ]*$/'));
-        $titleRegex->setMessage('Somente números, letras ou espaço');
+        $basicRegex = new \Zend\Validator\Regex(array('pattern' => '/^[a-zA-Z0-9 ]*$/'));
+        $basicRegex->setMessage('Somente números, letras ou espaço');
 
         $title->getValidatorChain()
-                ->attach($titleRegex)
+                ->attach($basicRegex)
                 ->attachByName('StringLength', array('min' => 1, 'max' => 128));
 
+        //---------------------------------------------------------------------------------------------------
+        $dateExpiresValidation = new \Zend\Validator\Date(array(
+            'format' => 'yyyy-MM-dd'
+        ));
+        $dateExpiresValidation->setMessage('Invalid Date Format!');
+        $dateExpires = new Input('dateExpires');
+        $dateExpires->getValidatorChain()
+                ->attach($dateExpiresValidation);
+
+        //---------------------------------------------------------------------------------------------------
+        $description = new Input('description');
+        $description->getValidatorChain()
+                ->attach($basicRegex)
+                ->attachByName('StringLength', array('min' => 1, 'max' => 4096));
+
+        $description->getFilterChain()
+                ->attachByName('StringTrim')
+                ->attachByName('StripTags');
+
+        //---------------------------------------------------------------------------------------------------
+        $photoFilename = new Input('photoFilename');
+        $photoFilename->getValidatorChain()
+                ->attach($basicRegex)
+                ->attachByName('StringLength', array('min' => 1, 'max' => 1024));
+
+        $photoFilename->getFilterChain()
+                ->attachByName('StringTrim')
+                ->attachByName('StripTags');
+
+        //---------------------------------------------------------------------------------------------------
+        $contactName = new Input('contactName');
+        $contactName->getValidatorChain()
+                ->attach($basicRegex)
+                ->attachByName('StringLength', array('min' => 1, 'max' => 255));
+
+        $contactName->getFilterChain()
+                ->attachByName('StringTrim')
+                ->attachByName('StripTags');
+
+        //---------------------------------------------------------------------------------------------------
+        $contactEmail = new Input('contactEmail');
+        $contactEmail->getValidatorChain()
+                ->attach($basicRegex)
+                ->attachByName('StringLength', array('min' => 1, 'max' => 255));
+
+        $contactEmail->getFilterChain()
+                ->attachByName('StringTrim')
+                ->attachByName('StripTags');
+
+        //---------------------------------------------------------------------------------------------------
+        $contactPhone = new Input('contactPhone');
+        $contactPhone->getValidatorChain()
+                ->attach($basicRegex)
+                ->attachByName('StringLength', array('min' => 1, 'max' => 32));
+
+        $contactPhone->getFilterChain()
+                ->attachByName('StringTrim')
+                ->attachByName('StripTags');
+
+        //---------------------------------------------------------------------------------------------------
+        $city = new Input('city');
+        $city->getValidatorChain()
+                ->attach($basicRegex)
+                ->attachByName('StringLength', array('min' => 1, 'max' => 128));
+
+        $city->getFilterChain()
+                ->attachByName('StringTrim')
+                ->attachByName('StripTags');
+
+        //---------------------------------------------------------------------------------------------------
+        $contry = new Input('contry');
+        $contry->getValidatorChain()
+                ->attach($basicRegex)
+                ->attachByName('StringLength', array('min' => 1, 'max' => 2));
+
+        $contry->getFilterChain()
+                ->attachByName('StringTrim')
+                ->attachByName('StripTags');
+
+        //---------------------------------------------------------------------------------------------------
+        $priceRegex = new \Zend\Validator\Regex(array('pattern' => '/[\d,\.]/'));
+        $priceRegex->setMessage('Somente números');
+        $price = new Input('price');
+        $price->getValidatorChain()
+                ->attach($priceRegex)
+                ->attachByName('StringLength', array('min' => 1, 'max' => 13));
+
+        $price->getFilterChain()
+                ->attachByName('StringTrim')
+                ->attachByName('StripTags');
+
+        //---------------------------------------------------------------------------------------------------
+        $deleteCode = new Input('deleteCode');
+        $deleteCode->getValidatorChain()
+                ->attach($basicRegex);
+
+        $deleteCode->getFilterChain()
+                ->attachByName('StringTrim')
+                ->attachByName('StripTags');
+
+        //---------------------------------------------------------------------------------------------------
         $this->add($category);
         $this->add($title);
+        $this->add($dateExpires);
+        $this->add($description);
+        $this->add($photoFilename);
+        $this->add($contactName);
+        $this->add($contactEmail);
+        $this->add($contactPhone);
+        $this->add($city);
+        $this->add($contry);
+        $this->add($price);
+        $this->add($deleteCode);
     }
 }
