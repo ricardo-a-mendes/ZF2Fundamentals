@@ -80,8 +80,7 @@ class PostFilter extends InputFilter
         //---------------------------------------------------------------------------------------------------
         $contactEmail = new Input('contactEmail');
         $contactEmail->getValidatorChain()
-                ->attach($basicRegex)
-                ->attachByName('StringLength', array('min' => 1, 'max' => 255));
+                ->attach(new \Zend\Validator\EmailAddress(array('domain' => false)));
 
         $contactEmail->getFilterChain()
                 ->attachByName('StringTrim')
@@ -139,6 +138,11 @@ class PostFilter extends InputFilter
                 ->attachByName('StripTags');
 
         //---------------------------------------------------------------------------------------------------
+        $captha = new Input('segCaptcha');
+        $captha->getValidatorChain();
+
+
+        //---------------------------------------------------------------------------------------------------
         $this->add($category);
         $this->add($title);
         $this->add($dateExpires);
@@ -151,5 +155,6 @@ class PostFilter extends InputFilter
         $this->add($contry);
         $this->add($price);
         $this->add($deleteCode);
+        $this->add($captha);
     }
 }

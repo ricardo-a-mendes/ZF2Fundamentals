@@ -2,6 +2,7 @@
 
 namespace Market\Form;
 
+use Zend\Form\Element\Captcha;
 use Zend\Form\Element\Date;
 use Zend\Form\Element\Select;
 use Zend\Form\Element\Submit;
@@ -114,6 +115,10 @@ class PostForm extends Form
                             'maxLength' => 16
                 ));
 
+        $captcha = new Captcha('segCaptcha');
+        $captcha->setCaptcha(new \Zend\Captcha\Dumb())
+                ->setLabel('Você é um humano ?');
+
         $submit = new Submit('submit');
         $submit->setAttribute('value', 'Post');
 
@@ -129,6 +134,7 @@ class PostForm extends Form
                 ->add($city)
                 ->add($price)
                 ->add($deleteCode)
+                ->add($captcha)
                 ->add($submit);
     }
 
