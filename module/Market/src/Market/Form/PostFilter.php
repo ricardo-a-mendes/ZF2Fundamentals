@@ -40,7 +40,7 @@ class PostFilter extends InputFilter
 
         //---------------------------------------------------------------------------------------------------
         $dateExpiresValidation = new \Zend\Validator\Date(array(
-            'format' => 'yyyy-MM-dd'
+            'format' => 'Y-m-d'
         ));
         $dateExpiresValidation->setMessage('Invalid Date Format!');
         $dateExpires = new Input('dateExpires');

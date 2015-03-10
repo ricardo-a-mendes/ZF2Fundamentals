@@ -46,7 +46,7 @@ class PostForm extends Form
                             'step' => '1'
                 ))
                 ->setOptions(array(
-                    'format' => 'dd/mm/YYYY'
+                    'format' => 'Y-m-d'
                 ));
 
         $description = new Textarea('description');
