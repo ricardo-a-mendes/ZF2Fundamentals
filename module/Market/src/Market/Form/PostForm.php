@@ -115,10 +115,12 @@ class PostForm extends Form
                             'maxLength' => 16
                 ));
 
+        /*
+        //Deixaremos desativado por enquanto
         $captcha = new Captcha('segCaptcha');
         $captcha->setCaptcha(new \Zend\Captcha\Dumb())
                 ->setLabel('Você é um humano ?');
-
+        */
         $submit = new Submit('submit');
         $submit->setAttribute('value', 'Post');
 
@@ -134,7 +136,6 @@ class PostForm extends Form
                 ->add($city)
                 ->add($price)
                 ->add($deleteCode)
-                ->add($captcha)
                 ->add($submit);
     }
 

@@ -138,11 +138,6 @@ class PostFilter extends InputFilter
                 ->attachByName('StripTags');
 
         //---------------------------------------------------------------------------------------------------
-        $captha = new Input('segCaptcha');
-        $captha->getValidatorChain();
-
-
-        //---------------------------------------------------------------------------------------------------
         $this->add($category);
         $this->add($title);
         $this->add($dateExpires);
@@ -155,6 +150,5 @@ class PostFilter extends InputFilter
         $this->add($contry);
         $this->add($price);
         $this->add($deleteCode);
-        $this->add($captha);
     }
 }
