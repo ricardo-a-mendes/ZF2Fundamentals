@@ -1,2 +1,22 @@
-<?php /* @var $this \Zend\View\Renderer\PhpRenderer */  ?>
-<?php echo "<h1>{$this->escapeHtml($this->category)}</h1>";
+<?php /* @var $this \Zend\View\Renderer\PhpRenderer */ ?>
+<?php echo "<h1>{$this->escapeHtml($this->category)}</h1>"; ?>
+
+<?php if ($this->listings instanceof \Zend\Db\ResultSet\ResultSet): ?>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Posted</th>
+        </tr>
+        <?php while ($item = $this->listings->current()): ?>
+        <tr style="background-color: <?php echo $this->cycle(['#F9A770', '#FAC769', '#FAAE58'])->next(); ?>">
+            <td><a href="<?php echo $this->basePath("/market/view/item/{$item->listings_id}");?>"><?php echo $this->escapeHtml($item['title']); ?></a></td>
+                <td><?php echo $this->escapeHtml($item['price']); ?></td>
+                <td><?php echo $this->escapeHtml($item['date_created']); ?></td>
+            </tr>
+            <?php $this->listings->next(); ?>
+        <?php endwhile; ?>
+    </table>
+<?php else: ?>
+    <?php \Zend\Debug\Debug::dump($this->listings); ?>
+<?php endif;

@@ -5,12 +5,21 @@ namespace Market\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
+/**
+ * @property \Market\Model\ListingsTable $listingsTable Listings Table
+ */
 class ViewController extends AbstractActionController
 {
+
+    use ListingsTableTrait;
+
     public function indexAction()
     {
         $category = $this->params()->fromRoute('category');
-        return new ViewModel(array('category' => $category));
+
+        $listings = $this->listingsTable->getListingsByCategory($category);
+
+        return new ViewModel(array('category' => $category, 'listings' => $listings));
     }
 
     public function itemAction()
@@ -23,6 +32,8 @@ class ViewController extends AbstractActionController
             return $this->redirect()->toRoute('market');
         }
 
-        return new ViewModel(array('itemId' => $itemId));
+        $item = $this->listingsTable->getListingsById($itemId);
+
+        return new ViewModel(array('item' => $item));
     }
 }

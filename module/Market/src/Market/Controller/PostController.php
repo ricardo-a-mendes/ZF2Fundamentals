@@ -7,6 +7,8 @@ use Zend\View\Model\ViewModel;
 
 class PostController extends AbstractActionController
 {
+    use ListingsTableTrait;
+
     public $categories;
     private $postForm;
 

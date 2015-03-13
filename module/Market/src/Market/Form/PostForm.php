@@ -2,7 +2,6 @@
 
 namespace Market\Form;
 
-use Zend\Form\Element\Captcha;
 use Zend\Form\Element\Date;
 use Zend\Form\Element\Select;
 use Zend\Form\Element\Submit;
