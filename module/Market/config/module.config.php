@@ -25,6 +25,16 @@ return array(
                 'may_terminate' => true,
                 //Encadeando as rotas (filhas)
                 'child_routes' => array(
+                    'slash' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/',
+                            'defaults' => array(
+                                'controller' => 'market-index-controller',
+                                'action' => 'index',
+                            ),
+                        ),
+                    ),
                     'view' => array(
                         'type' => 'Segment',
                         'options' => array(

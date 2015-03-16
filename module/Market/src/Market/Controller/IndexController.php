@@ -17,7 +17,9 @@ class IndexController extends AbstractActionController
         }
         //return new ViewModel(array('messages' => $messages));
 
-        return array('messages' => $messages);
+        $leatestItem = $this->listingsTable->getLeatestListings();
+
+        return array('messages' => $messages, 'item' => $leatestItem);
     }
 
     public function fooAction()

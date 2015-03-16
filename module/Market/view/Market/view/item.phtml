@@ -1,30 +1,4 @@
 <?php /* @var $this \Zend\View\Renderer\PhpRenderer */ ?>
-<h1>Itens:</h1>
-<?php //var_dump($this->item); ?>
+<h1>Online Market</h1>
 
-<?php if ($this->item): ?>
-    <h3><?php echo $this->escapeHtml($this->item->title); ?></h3>
-
-    <div style="width: 250px; float: left">
-        <?php if ($this->item->photo_filename): ?>
-            <img src="<?php echo $this->item->photo_filename; ?>">
-        <?php else: ?>
-            No Image
-        <?php endif; ?>
-    </div>
-
-    <div style="width: 400px; float: left; margin: 20px">
-        <b>Contact Details</b>
-        <br><?php echo $this->escapeHtml($this->item->contact_name); ?>
-        <br><?php echo $this->escapeHtml($this->item->contact_email); ?>
-        <br><?php echo $this->escapeHtml($this->item->contact_phone); ?>
-        <br><b>Posting Details</b>
-        <br><?php echo $this->escapeHtml($this->item->date_created); ?>
-        <br>Price: <?php echo $this->escapeHtml($this->item->price); ?>
-        <br>City: <?php echo $this->escapeHtml($this->item->city); ?>, <?php echo $this->escapeHtml($this->item->country); ?>
-        <br><b>Description</b>
-        <p><?php echo $this->escapeHtml($this->item->description); ?></p>
-    </div>
-<?php else: ?>
-    No recent posting
-<?php endif; ?>
+<?php echo $this->partial('market/partials/item', ['item' => $this->item]);  ?>
