@@ -34,11 +34,11 @@ class PostForm extends Form
                 ->setAttributes(
                         array(
                             'size' => 60,
-                            'maxLength' => 3
+                            'maxLength' => 60
                         )
         );
 
-        $dateExpires = new Date('dateExpires');
+        $dateExpires = new Date('date_expires');
         $dateExpires->setLabel('Date Expires')
                 ->setAttributes(
                         array(
@@ -57,28 +57,28 @@ class PostForm extends Form
                             'cols' => 60
                 ));
 
-        $photoFilename = new Text('photoFilename');
+        $photoFilename = new Text('photo_filename');
         $photoFilename->setLabel('Photo Filename')
                 ->setAttributes(
                         array(
                             'maxLength' => 1024
                 ));
 
-        $contactName = new Text('contactName');
+        $contactName = new Text('contact_name');
         $contactName->setLabel('Contact Name')
                 ->setAttributes(
                         array(
                             'maxLength' => 255
                 ));
 
-        $contactEmail = new Text('contactEmail');
+        $contactEmail = new Text('contact_email');
         $contactEmail->setLabel('Contact e-mail')
                 ->setAttributes(
                         array(
                             'maxLength' => 255
                 ));
 
-        $contactPhone = new Text('contactPhone');
+        $contactPhone = new Text('contact_phone');
         $contactPhone->setLabel('Contact Phone')
                 ->setAttributes(
                         array(
@@ -92,8 +92,8 @@ class PostForm extends Form
                             'maxLength' => 128
                 ));
 
-        $contry = new Select('contry');
-        $contry->setLabel('Contry')
+        $contry = new Select('country');
+        $contry->setLabel('Country')
                 ->setValueOptions(array(
                     'br' => 'Brazil',
                     'us' => 'USA',
@@ -107,7 +107,7 @@ class PostForm extends Form
                             'maxLength' => 13
                 ));
 
-        $deleteCode = new Text('deleteCode');
+        $deleteCode = new Text('delete_code');
         $deleteCode->setLabel('Delete Code')
                 ->setAttributes(
                         array(

@@ -43,7 +43,7 @@ class PostFilter extends InputFilter
             'format' => 'Y-m-d'
         ));
         $dateExpiresValidation->setMessage('Invalid Date Format!');
-        $dateExpires = new Input('dateExpires');
+        $dateExpires = new Input('date_expires');
         $dateExpires->getValidatorChain()
                 ->attach($dateExpiresValidation);
 
@@ -58,7 +58,7 @@ class PostFilter extends InputFilter
                 ->attachByName('StripTags');
 
         //---------------------------------------------------------------------------------------------------
-        $photoFilename = new Input('photoFilename');
+        $photoFilename = new Input('photo_filename');
         $photoFilename->getValidatorChain()
                 ->attach($basicRegex)
                 ->attachByName('StringLength', array('min' => 1, 'max' => 1024));
@@ -68,7 +68,7 @@ class PostFilter extends InputFilter
                 ->attachByName('StripTags');
 
         //---------------------------------------------------------------------------------------------------
-        $contactName = new Input('contactName');
+        $contactName = new Input('contact_name');
         $contactName->getValidatorChain()
                 ->attach($basicRegex)
                 ->attachByName('StringLength', array('min' => 1, 'max' => 255));
@@ -78,7 +78,7 @@ class PostFilter extends InputFilter
                 ->attachByName('StripTags');
 
         //---------------------------------------------------------------------------------------------------
-        $contactEmail = new Input('contactEmail');
+        $contactEmail = new Input('contact_email');
         $contactEmail->getValidatorChain()
                 ->attach(new \Zend\Validator\EmailAddress(array('domain' => false)));
 
@@ -87,7 +87,7 @@ class PostFilter extends InputFilter
                 ->attachByName('StripTags');
 
         //---------------------------------------------------------------------------------------------------
-        $contactPhone = new Input('contactPhone');
+        $contactPhone = new Input('contact_phone');
         $contactPhone->getValidatorChain()
                 ->attach($basicRegex)
                 ->attachByName('StringLength', array('min' => 1, 'max' => 32));
@@ -107,7 +107,7 @@ class PostFilter extends InputFilter
                 ->attachByName('StripTags');
 
         //---------------------------------------------------------------------------------------------------
-        $contry = new Input('contry');
+        $contry = new Input('country');
         $contry->getValidatorChain()
                 ->attach($basicRegex)
                 ->attachByName('StringLength', array('min' => 1, 'max' => 2));
@@ -129,7 +129,7 @@ class PostFilter extends InputFilter
                 ->attachByName('StripTags');
 
         //---------------------------------------------------------------------------------------------------
-        $deleteCode = new Input('deleteCode');
+        $deleteCode = new Input('delete_code');
         $deleteCode->getValidatorChain()
                 ->attach($basicRegex);
 

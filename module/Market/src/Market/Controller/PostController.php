@@ -34,6 +34,7 @@ class PostController extends AbstractActionController
         //return new ViewModel(array('categories' => $this->categories));
 
         $data = $this->params()->fromPost();
+
         $vm = new ViewModel(array('postForm' => $this->postForm, 'data' => $data));
         $vm->setTemplate('market/post/index.phtml');
 
@@ -49,7 +50,7 @@ class PostController extends AbstractActionController
             }
             else
             {
-                $invalidView = new ViewModel();
+                $invalidView = new ViewModel(array('messages' => array('Form Post Inválido')));
                 $invalidView->setTemplate('market/post/invalid.phtml');
                 $invalidView->addChild($vm, 'main');
 

@@ -60,7 +60,7 @@ class ListingsTable extends TableGateway
         $data['date_expires'] = $date->format('Y-m-d H:i:s');
         unset($data['cityCode'], $data['expires'], $data['captcha'], $data['submit']);
         */
-        unset($data['cityCode'], $data['expires'], $data['captcha'], $data['submit']);
+        unset($data['submit']);
         $this->insert($data);
     }
 
