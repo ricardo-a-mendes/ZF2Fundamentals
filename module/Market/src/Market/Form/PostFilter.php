@@ -58,9 +58,14 @@ class PostFilter extends InputFilter
                 ->attachByName('StripTags');
 
         //---------------------------------------------------------------------------------------------------
+
+        //URL Regex:
+        $urlRegex = new \Zend\Validator\Regex(array('pattern' => '!^(http://)?[a-z0-9./_-]+(jp(e)?g|png)$!i'));
+        $urlRegex->setMessage('URL inválida');
+
         $photoFilename = new Input('photo_filename');
         $photoFilename->getValidatorChain()
-                ->attach($basicRegex)
+                ->attach($urlRegex)
                 ->attachByName('StringLength', array('min' => 1, 'max' => 1024));
 
         $photoFilename->getFilterChain()

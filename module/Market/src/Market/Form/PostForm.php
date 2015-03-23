@@ -7,6 +7,7 @@ use Zend\Form\Element\Select;
 use Zend\Form\Element\Submit;
 use Zend\Form\Element\Text;
 use Zend\Form\Element\Textarea;
+use Zend\Form\Element\Url;
 use Zend\Form\Form;
 
 class PostForm extends Form
@@ -57,7 +58,7 @@ class PostForm extends Form
                             'cols' => 60
                 ));
 
-        $photoFilename = new Text('photo_filename');
+        $photoFilename = new Url('photo_filename');
         $photoFilename->setLabel('Photo Filename')
                 ->setAttributes(
                         array(
