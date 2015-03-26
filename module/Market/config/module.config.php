@@ -64,9 +64,9 @@ return array(
                                         'controller' => 'market-view-controller',
                                         'action' => 'item',
                                     ),
-                                    'constraints' => array(
-                                        'itemId' => '[0-9]*',
-                                    ),
+                                //'constraints' => array(
+                                //    'itemId' => '[0-9]*',
+                                //),
                                 ),
                             ),
                         ),
@@ -87,12 +87,11 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-
         ),
         'factories' => array(
-            'market-post-controller'    => 'Market\Factory\PostControllerFactory',
-            'market-index-controller'   => 'Market\Factory\IndexControllerFactory',
-            'market-view-controller'    => 'Market\Factory\ViewControllerFactory',
+            'market-post-controller' => 'Market\Factory\PostControllerFactory',
+            'market-index-controller' => 'Market\Factory\IndexControllerFactory',
+            'market-view-controller' => 'Market\Factory\ViewControllerFactory',
         ),
         'aliases' => array(
             'alt' => 'market-view-controller'
@@ -100,10 +99,10 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
-            'general-adapter'       => 'Zend\Db\Adapter\AdapterServiceFactory',
-            'market-post-form'      => 'Market\Factory\PostFormFactory',
-            'market-post-filter'    => 'Market\Factory\PostFilterFactory',
-            'listings-table'        => 'Market\Factory\ListingsTableFactory'
+            'general-adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+            'market-post-form' => 'Market\Factory\PostFormFactory',
+            'market-post-filter' => 'Market\Factory\PostFilterFactory',
+            'listings-table' => 'Market\Factory\ListingsTableFactory'
         ),
     ),
     'view_manager' => array(

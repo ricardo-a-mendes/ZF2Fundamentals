@@ -32,7 +32,7 @@ class ViewController extends AbstractActionController
             return $this->redirect()->toRoute('market');
         }
 
-        $item = $this->listingsTable->getListingsById($itemId);
+        $item = $this->listingsTable->getListingsById((int)$itemId);
 
         return new ViewModel(array('item' => $item));
     }
